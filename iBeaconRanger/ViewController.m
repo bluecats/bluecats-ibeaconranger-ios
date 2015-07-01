@@ -20,8 +20,11 @@
 
 - (CLBeaconRegion *)iBeaconRangerRegion
 {
+    
     if (!_iBeaconRangerRegion) {
-        _iBeaconRangerRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString: @"61687109-905F-4436-91F8-E602F514C96D"] /*major:1*/ identifier:@"com.blueCats.iBeaconRangerRegion"];
+        
+        _iBeaconRangerRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString: @"YOUR PROXIMITY UUID GOES HERE"] identifier:@"com.blueCats.iBeaconRangerRegion"];
+    
         _iBeaconRangerRegion.notifyOnEntry = YES;
         _iBeaconRangerRegion.notifyOnExit = YES;
         _iBeaconRangerRegion.notifyEntryStateOnDisplay = YES;
@@ -157,13 +160,7 @@
     NSLog(@"Did range %lu beacons in region with identifier %@", (unsigned long)beacons.count, region.identifier);
     
     for (CLBeacon *beacon in beacons) {
-        if (beacon.proximityUUID && [beacon.proximityUUID.UUIDString isEqualToString:self.iBeaconRangerRegion.proximityUUID.UUIDString] /*&&
-            beacon.major && [beacon.major integerValue] == 1 &&
-            beacon.minor && [beacon.minor integerValue] == 0 */)
-        {
-            
-            NSLog(@"%@:%ld:%ld rssi: %ld dBm", beacon.proximityUUID.UUIDString, (long)[beacon.major integerValue], (long)[beacon.minor integerValue], (long)beacon.rssi);
-        }
+        NSLog(@"%@:%ld:%ld rssi: %ld dBm", beacon.proximityUUID.UUIDString, (long)[beacon.major integerValue], (long)[beacon.minor integerValue], (long)beacon.rssi);
     }
 }
 
